@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-rgb: 62 207 142;
+  --foreground-rgb: 30 30 30;
+  --background-rgb: 250 250 250;
+
+  --warning-rgb: 234 179 8;
+  --paused-rgb: 239 68 68;
+
+  --inky: #0b1215;
+  --midnight: #02020a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 210 210 210;
+    --background-rgb: 30 30 30;
+  }
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+
+  scrollbar-color: rgb(var(--foreground-rgb)) rgb(var(--background-rgb));
+}
+
+dialog {
+  opacity: 0;
+  transition: opacity 0.3s ease-out, display 0.3s allow-discrete,
+    overlay 0.3s allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transition: opacity 0.4s 0.2s ease-out, display 0.4s 0.2s allow-discrete,
+    overlay 0.4s 0.2s allow-discrete;
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+  }
+}
+
+dialog::backdrop {
+  opacity: 0;
+  background-color: var(--inky);
+  transition: opacity 0.1s 0.2s ease-out, display 0.1s 0.2s allow-discrete,
+    overlay 0.1s 0.2s allow-discrete;
+}
+
+dialog[open]::backdrop {
+  opacity: 0.88;
+  transition: opacity 0.4s ease-out, display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete;
+}
+
+@starting-style {
+  dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.x-axis .tick line,
+.x-axis .domain {
+  opacity: 0;
+}
+
+.x-axis .tick text {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
